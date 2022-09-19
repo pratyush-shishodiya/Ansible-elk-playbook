@@ -1,0 +1,14 @@
+---
+- name: Install logstash with kibana
+  apt:
+      name: logstash
+      update_cache: yes
+
+
+#starting kibana
+
+- name: starting kibana
+  service:
+          name: kibana
+          state: started
+

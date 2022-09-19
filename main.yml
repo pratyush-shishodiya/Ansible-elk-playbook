@@ -1,0 +1,11 @@
+---
+- name: Elksetup using ansible
+  hosts: webservers
+  remote_user: itachi
+  become: true
+
+  roles:
+  - {role: elasticsearch}
+  - {role: kibana}
+  - {role: logstash}
+  - {role: filebeat}
