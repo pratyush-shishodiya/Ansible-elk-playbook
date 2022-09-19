@@ -6,3 +6,6 @@
 
   roles:
   - {role: elasticsearch}
+  - {role: kibana}
+  - {role: logstash}
+  - {role: filebeat}
