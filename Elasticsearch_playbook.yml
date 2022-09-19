@@ -1,0 +1,60 @@
+---
+#installing apt_key for elasticsearch
+- name: Install apt key 
+  apt-key:
+          url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+          state: present
+
+  
+#installing apt_transport_package
+- name: Install APT_repo
+  apt:
+      name: apt-transport-https
+      state: present
+
+
+
+#Adding repository 
+- name: Adding Elastic repo
+  apt_repository:
+      repo: deb https://artifacts.elastic.co/packages/8.x/apt stable main
+      state: present
+
+#Install elastic search
+
+- name: Installing ElasticSerch
+  apt:
+      name: Elasticsearch
+      state: present
+      update_cache: yes
+
+
+#update config file of elsatic search
+- name: updating config file to allow outside access
+  lineinfile:
+            destfile: /etc/elasticsearch/elasticsearch.yml 
+            regexp: 'network.host:'
+            line: 'network.host: 0.0.0.0'
+
+#update Elastic search port in config file
+- name: update Elastic search port in config file
+  lineinfile:
+            destfile: etc/elasticsearch/elasticsearch.yml
+            regexp: 'http.port:'
+            line: 'http.port: 9200'
+
+
+# Update Elasticsearch nodes in config file
+- name: Updating the config file to allow outside access
+  lineinfile:
+            destfile: /etc/elasticsearch/elasticsearch.yml
+            regexp: 'cluster.initial_master_nodes:'
+            line: 'cluster.initial_master_nodes: ["{{ ansible_default_ipv4.address }}"]'
+
+    
+#starting the elastic search
+- name: Starting the elastic search
+  service:
+          name: elasticsearch
+          state: started
+
