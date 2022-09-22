@@ -1,11 +1,14 @@
 ---
 - name: Elksetup using ansible
-  hosts: webservers
+  hosts: ELKnode
   remote_user: itachi
-  become: true
+  become: yes
+  become_user: itachi
 
   roles:
-  - {role: elasticsearch}
-  - {role: kibana}
-  - {role: logstash}
-  - {role: filebeat}
+  - { role: java }
+  - { role: elasticsearch }
+  - { role: logstash }
+  - { role: kibana } 
+  - { role: filebeat }
+  - { role: restartservice }
