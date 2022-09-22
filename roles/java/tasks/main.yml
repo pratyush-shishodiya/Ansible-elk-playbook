@@ -1,0 +1,16 @@
+---
+
+#updating apt 
+- name: updating APT cache repo
+  apt:
+      update_cache: yes
+
+
+#insatlling java
+- name: Installing openjdk java
+  become: yes
+  apt:
+    name: java
+    state: present
+  with_items:
+    openjdk-8-jdk

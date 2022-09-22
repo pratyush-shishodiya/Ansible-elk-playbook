@@ -1,7 +1,7 @@
 ---
 #installing apt_key for elasticsearch
 - name: Install apt key 
-  apt-key:
+  apt_key:
           url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
           state: present
 
@@ -49,7 +49,7 @@
   lineinfile:
             destfile: /etc/elasticsearch/elasticsearch.yml
             regexp: 'cluster.initial_master_nodes:'
-            line: 'cluster.initial_master_nodes: ["{{ ansible_default_ipv4.address }}"]'
+            line: 'cluster.initial_master_nodes: ["{{ 192.168.29.169 }}"]'
 
     
 #starting the elastic search
