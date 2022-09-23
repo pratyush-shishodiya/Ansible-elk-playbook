@@ -24,7 +24,7 @@
 
 - name: Installing ElasticSerch
   apt:
-      name: Elasticsearch
+      name: elasticsearch
       state: present
       update_cache: yes
 
@@ -39,22 +39,23 @@
 #update Elastic search port in config file
 - name: update Elastic search port in config file
   lineinfile:
-            destfile: etc/elasticsearch/elasticsearch.yml
+            destfile: /etc/elasticsearch/elasticsearch.yml
             regexp: 'http.port:'
             line: 'http.port: 9200'
 
 
-# Update Elasticsearch nodes in config file
+#Update Elasticsearch nodes in config file
 - name: Updating the config file to allow outside access
   lineinfile:
             destfile: /etc/elasticsearch/elasticsearch.yml
             regexp: 'cluster.initial_master_nodes:'
-            line: 'cluster.initial_master_nodes: ["{{ 192.168.29.169 }}"]'
+            line: 'cluster.initial_master_nodes: ["{{ ansible_default_ipv4.address }}"]'
 
     
-#starting the elastic search
-- name: Starting the elastic search
+# Start Elasticsearch
+- name: Starting Elasticsearch
   service:
-          name: elasticsearch
-          state: started
+   name: elasticsearch
+   state: started
+   enabled: yes
 
