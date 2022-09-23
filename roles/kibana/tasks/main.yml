@@ -6,6 +6,7 @@
   apt:
       name: kibana
       state: present
+      update_cache: yes
 
 
 #updating config file in kibana
@@ -36,3 +37,4 @@
   service:
           name: kibana
           state: started
+          enabled: yes

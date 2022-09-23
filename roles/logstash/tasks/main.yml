@@ -7,8 +7,8 @@
 
 #starting kibana
 
-- name: starting kibana
+- name: starting logstash
   service:
-          name: kibana
+          name: logstash
           state: started
-
+          enabled: yes

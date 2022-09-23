@@ -15,7 +15,9 @@
     name: kibana
     state: restarted
 
-- name: Restart metricbeat
+- name: Restart filebeat
   service:
-    name: metricbeat
+    name: filebeat
     state: restarted
+
+
