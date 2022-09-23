@@ -1,0 +1,30 @@
+
+---
+
+- name: Uninstall elasticservice
+  apt:
+    name: elasticsearch
+    autoremove: yes
+    state: absent
+
+- name: uninstall logstash
+  apt:
+    name: logstash
+    autoremove: yes
+    state: absent
+
+
+- name: Uninstall kibana
+  apt:
+    name: kibana
+    autoremove: yes
+    state: absent
+
+- name: Unistall filebeat
+  apt:
+    name: filebeat
+    autoremove: yes
+    tate: absent
+
+
+
