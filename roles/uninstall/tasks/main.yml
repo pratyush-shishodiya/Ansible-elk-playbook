@@ -12,6 +12,7 @@
     name: logstash
     autoremove: yes
     state: absent
+    
 
 
 - name: Uninstall kibana
